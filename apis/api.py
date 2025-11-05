@@ -65,4 +65,21 @@ def run_server(arguments):
         file_utils.STATIC_SERVER_BASE = f"{arguments.base_url}"
     else:
         file_utils.STATIC_SERVER_BASE = f"http://{arguments.base_url}:{api_port}"
+
+    # If the user requested no web UI but bound to all interfaces, optionally expose the API
+    # via an ngrok tunnel (if pyngrok is installed). This provides a temporary public URL
+    # for the API and updates STATIC_SERVER_BASE accordingly.
+    try:
+        if getattr(arguments, 'listen', None) == '0.0.0.0':
+            try:
+                from pyngrok import ngrok
+                # Respect NGROK_AUTHTOKEN env var if set; pyngrok will pick it up automatically
+                public_tunnel = ngrok.connect(addr=api_port, proto="http", bind_tls=True)
+                public_url = public_tunnel.public_url
+                print(f"[ngrok] Public API URL: {public_url}")
+                file_utils.STATIC_SERVER_BASE = public_url
+            except Exception as e:
+                print(f"[ngrok] Failed to start ngrok tunnel: {e}")
+    except Exception:
+        pass
     uvicorn.run(app, host=arguments.listen, port=api_port)
