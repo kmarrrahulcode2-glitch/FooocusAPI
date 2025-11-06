@@ -1,5 +1,5 @@
 {
-    "default_model": "cyberrealisticPony_v160.safetensors",
+    "default_model": "cyberrealisticPony_v141.safetensors",
     "default_refiner": "None",
     "default_refiner_switch": 0.5,
     "default_loras": [
@@ -44,8 +44,8 @@
     "default_aspect_ratio": "1152*896",
     "default_overwrite_step": -1,
     "checkpoint_downloads": {
-        "juggernautXL_v8Rundiffusion.safetensors": "https://huggingface.co/lllyasviel/fav_models/resolve/main/fav/juggernautXL_v8Rundiffusion.safetensors",
-        "cyberrealisticPony_v160.safetensors": "https://civitai.com/api/download/models/2255476?type=Model&format=SafeTensor&size=pruned&fp=fp16"
+        "juggernautXL_ragnarokBy.safetensors": "https://civitai.com/api/download/models/1759168?type=Model&format=SafeTensor&size=full&fp=fp16",
+        "cyberrealisticPony_v141.safetensors": "https://civitai.com/api/download/models/2334591?type=Model&format=SafeTensor&size=full&fp=fp32"
     },
     "embeddings_downloads": {},
     "lora_downloads": {},
